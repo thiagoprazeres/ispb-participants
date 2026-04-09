@@ -40,7 +40,7 @@ const status = getInstitutionStatusByIspb('60746948');
 
 Os dados estão embutidos no bundle — não há chamadas de rede em runtime. O snapshot é atualizado diariamente pelo pipeline e publicado via `npm publish`.
 
-Cada entrada em `INSTITUTIONS` é um índice derivado, não um dataset canônico. Os dados canônicos brutos estão disponíveis como arrays separados: `SPI_PARTICIPANTS`, `PIX_ACTIVE_PARTICIPANTS`, `PIX_IN_ADHESION`.
+Cada entrada em `INSTITUTIONS` é o índice derivado oficial para lookup por ISPB, não um dataset canônico. Os dados canônicos brutos continuam disponíveis como arrays separados: `SPI_PARTICIPANTS`, `PIX_ACTIVE_PARTICIPANTS`, `PIX_IN_ADHESION`.
 
 ## Próximos passos
 

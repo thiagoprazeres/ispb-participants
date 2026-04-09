@@ -399,6 +399,35 @@ function institutionToEntry(
   };
 }
 
+function collectExplicitCanonicalIspbs(datasets: CanonicalDatasets): Set<string> {
+  const ispbs = new Set<string>();
+  for (const record of datasets.spi_participants) {
+    if (record.ispb) ispbs.add(record.ispb);
+  }
+  for (const record of datasets.pix_active_participants) {
+    if (record.ispb) ispbs.add(record.ispb);
+  }
+  for (const record of datasets.pix_in_adhesion) {
+    if (record.ispb) ispbs.add(record.ispb);
+  }
+  return ispbs;
+}
+
+function assertLookupSafeInstitutionIndex(
+  datasets: CanonicalDatasets,
+  institutions: Record<string, InstitutionEntry>
+) {
+  const missingIspbs = [...collectExplicitCanonicalIspbs(datasets)]
+    .filter(ispb => !(ispb in institutions))
+    .sort();
+
+  if (missingIspbs.length > 0) {
+    throw new Error(
+      `INSTITUTIONS must contain every explicit canonical ISPB. Missing: ${missingIspbs.join(', ')}`
+    );
+  }
+}
+
 export function buildPackageProjection(
   datasets: CanonicalDatasets,
   manifest: SnapshotManifest
@@ -420,6 +449,7 @@ export function buildPackageProjection(
     .map(([ispb, inst]) => [ispb, institutionToEntry(inst, REPOSITORY_URL)] as const);
 
   const sortedInstitutions = Object.fromEntries(sortedEntries);
+  assertLookupSafeInstitutionIndex(datasets, sortedInstitutions);
 
   return {
     metadata: {

@@ -16,6 +16,10 @@ import {
   getMetadata,
 } from '../src/index.js';
 
+function explicitIspbs(records: Array<{ ispb: string | null }>): string[] {
+  return [...new Set(records.flatMap(record => (record.ispb ? [record.ispb] : [])))].sort();
+}
+
 describe('INSTITUTIONS', () => {
   it('has a broad national participant index', () => {
     expect(Object.keys(INSTITUTIONS).length).toBeGreaterThan(850);
@@ -28,6 +32,20 @@ describe('INSTITUTIONS', () => {
     expect(inst?.name.toLowerCase()).toBe('banco bradesco s.a.');
     expect(typeof inst?.shortName).toBe('string');
     expect(inst?.sourceDatasets).toContain('spi_participants');
+  });
+
+  it('contains every explicit ISPB from the canonical datasets', () => {
+    const datasets = [
+      { name: 'SPI_PARTICIPANTS', records: SPI_PARTICIPANTS },
+      { name: 'PIX_ACTIVE_PARTICIPANTS', records: PIX_ACTIVE_PARTICIPANTS },
+      { name: 'PIX_IN_ADHESION', records: PIX_IN_ADHESION },
+    ] as const;
+
+    for (const dataset of datasets) {
+      for (const ispb of explicitIspbs(dataset.records)) {
+        expect(INSTITUTIONS[ispb], `${dataset.name} ispb ${ispb}`).toBeDefined();
+      }
+    }
   });
 });
 
@@ -167,6 +185,16 @@ describe('getInstitutionByIspb', () => {
   it('is equivalent to deprecated getInstitution', () => {
     expect(getInstitutionByIspb('60746948')).toEqual(getInstitution('60746948'));
   });
+
+  it('does not fail for any explicit canonical ISPB', () => {
+    const datasets = [SPI_PARTICIPANTS, PIX_ACTIVE_PARTICIPANTS, PIX_IN_ADHESION] as const;
+
+    for (const dataset of datasets) {
+      for (const ispb of explicitIspbs(dataset)) {
+        expect(getInstitutionByIspb(ispb), `lookup failed for ${ispb}`).toBeDefined();
+      }
+    }
+  });
 });
 
 describe('getSpiParticipantByIspb', () => {
@@ -211,6 +239,26 @@ describe('getInstitutionStatusByIspb', () => {
     const status = getInstitutionStatusByIspb('60746948');
     expect(status?.inPixActive).toBe(true);
     expect(status?.inPixAdhesion).toBe(false);
+  });
+
+  it('marks canonical dataset presence consistently for explicit ISPBs', () => {
+    for (const ispb of explicitIspbs(SPI_PARTICIPANTS)) {
+      expect(getInstitutionStatusByIspb(ispb)?.inSpi, `SPI status failed for ${ispb}`).toBe(
+        true
+      );
+    }
+    for (const ispb of explicitIspbs(PIX_ACTIVE_PARTICIPANTS)) {
+      expect(
+        getInstitutionStatusByIspb(ispb)?.inPixActive,
+        `Pix active status failed for ${ispb}`
+      ).toBe(true);
+    }
+    for (const ispb of explicitIspbs(PIX_IN_ADHESION)) {
+      expect(
+        getInstitutionStatusByIspb(ispb)?.inPixAdhesion,
+        `Pix adhesion status failed for ${ispb}`
+      ).toBe(true);
+    }
   });
 });
 

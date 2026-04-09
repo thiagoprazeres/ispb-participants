@@ -59,7 +59,7 @@ const existe = hasIspb('60746948'); // true
 
 | Export | Tipo | Descrição |
 |---|---|---|
-| `INSTITUTIONS` | `Record<string, InstitutionEntry>` | Índice derivado por ISPB — **não canônico** |
+| `INSTITUTIONS` | `Record<string, InstitutionEntry>` | Índice derivado oficial e lookup-safe por ISPB — **não canônico** |
 | `SPI_PARTICIPANTS` | `SpiParticipantRecord[]` | Dataset canônico completo do SPI |
 | `PIX_ACTIVE_PARTICIPANTS` | `PixActiveParticipantRecord[]` | Dataset canônico de ativos do Pix |
 | `PIX_IN_ADHESION` | `PixInAdhesionRecord[]` | Dataset canônico de adesão ao Pix |
@@ -74,9 +74,11 @@ const existe = hasIspb('60746948'); // true
 
 > [Referência completa da API →](./docs/api.md) | [Qual export usar? →](./docs/which-export.md)
 
-## `INSTITUTIONS` é um índice derivado — não um dataset canônico
+## `INSTITUTIONS` é o índice oficial de lookup por ISPB — e não um dataset canônico
 
-`INSTITUTIONS` agrega dados de até três fontes distintas por ISPB. Cada entrada preserva marcadores explícitos de origem:
+`INSTITUTIONS` é a camada derivada oficial para consumo por ISPB no pacote. Ela existe para que um ISPB válido extraído de um EndToEndId do Pix possa ser resolvido sem falso negativo sempre que esse ISPB aparecer explicitamente em qualquer dataset canônico.
+
+Os datasets canônicos continuam separados (`SPI_PARTICIPANTS`, `PIX_ACTIVE_PARTICIPANTS`, `PIX_IN_ADHESION`). `INSTITUTIONS` não substitui essa separação: ele só fornece um índice derivado e lookup-safe por ISPB. Cada entrada preserva marcadores explícitos de origem:
 
 ```ts
 inst.inSpi         // boolean — está em spi_participants?

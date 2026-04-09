@@ -36,9 +36,11 @@ O crosswalk é útil para navegação e auditoria, mas **não deve ser usado par
 
 ---
 
-## INSTITUTIONS — índice derivado de conveniência
+## INSTITUTIONS — índice derivado oficial para lookup por ISPB
 
-`INSTITUTIONS` (export do pacote npm) é um índice agregado derivado dos três datasets canônicos de origem. **Não é um dataset canônico.**
+`INSTITUTIONS` (export do pacote npm) é o índice agregado oficial para lookup por ISPB, derivado dos três datasets canônicos de origem. **Não é um dataset canônico.**
+
+Se um ISPB aparece explicitamente em `spi_participants`, `pix_active_participants` ou `pix_in_adhesion`, ele deve aparecer em `INSTITUTIONS`.
 
 Cada entrada em `INSTITUTIONS` preserva os marcadores explícitos de origem:
 

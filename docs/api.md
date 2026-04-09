@@ -12,7 +12,9 @@ Referência completa dos exports do pacote `@thiagoprazeres/ispb-participants`.
 const INSTITUTIONS: Record<string, InstitutionEntry>
 ```
 
-Índice de instituições por ISPB de oito dígitos. **É um índice derivado, não um dataset canônico.** Cada entrada agrega registros de até três datasets de origem. Não use como fonte única de verdade; preserve a semântica dos campos `inSpi`, `inPixActive`, `inPixAdhesion` e `matchConfidence`.
+Índice oficial e lookup-safe de instituições por ISPB de oito dígitos. **É um índice derivado, não um dataset canônico.** Cada entrada agrega registros de até três datasets de origem e preserva `inSpi`, `inPixActive`, `inPixAdhesion`, `sourceDatasets`, `canonicalSource` e `matchConfidence`.
+
+Contrato público: se um ISPB aparece explicitamente em `SPI_PARTICIPANTS`, `PIX_ACTIVE_PARTICIPANTS` ou `PIX_IN_ADHESION`, ele deve aparecer em `INSTITUTIONS`.
 
 ---
 
@@ -52,7 +54,7 @@ Array completo de registros canônicos do dataset `pix_in_adhesion`. **Mantido s
 function getInstitutionByIspb(ispb: string): InstitutionEntry | undefined
 ```
 
-Retorna a entrada do índice derivado para o ISPB informado (aceita com ou sem zeros à esquerda). Retorna `undefined` se não encontrado.
+Retorna a entrada do índice derivado oficial para o ISPB informado (aceita com ou sem zeros à esquerda). É a função de lookup recomendada para ISPB extraído de EndToEndId. Retorna `undefined` se não encontrado.
 
 ### `getSpiParticipantByIspb(ispb)`
 
@@ -94,7 +96,7 @@ interface InstitutionStatus {
 function hasIspb(ispb: string): boolean
 ```
 
-Retorna `true` se o ISPB existe no índice `INSTITUTIONS`.
+Retorna `true` se o ISPB existe no índice oficial `INSTITUTIONS`.
 
 ---
 

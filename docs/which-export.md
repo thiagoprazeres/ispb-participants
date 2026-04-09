@@ -6,6 +6,8 @@ Guia rápido para escolher o export certo para cada caso de uso.
 
 ## Quero saber se um ISPB existe
 
+Esse é o caminho recomendado para ISPB extraído de EndToEndId.
+
 ```ts
 import { hasIspb } from '@thiagoprazeres/ispb-participants';
 hasIspb('60746948'); // true
@@ -14,6 +16,8 @@ hasIspb('60746948'); // true
 ---
 
 ## Quero o nome e status resumido de uma instituição por ISPB
+
+Esse é o lookup principal do pacote para consumo por ISPB.
 
 ```ts
 import { getInstitutionByIspb } from '@thiagoprazeres/ispb-participants';
@@ -87,7 +91,7 @@ import { INSTITUTIONS } from '@thiagoprazeres/ispb-participants';
 // Record<string, InstitutionEntry> — chave é o ISPB com 8 dígitos
 ```
 
-**Lembre:** `INSTITUTIONS` é um índice derivado, não um dataset canônico. Cada entrada agrega dados de até três datasets de origem. Use `sourceDatasets`, `inSpi`, `inPixActive`, `inPixAdhesion` para entender a origem de cada dado.
+**Lembre:** `INSTITUTIONS` é o índice derivado oficial e lookup-safe por ISPB do pacote, não um dataset canônico. Cada entrada agrega dados de até três datasets de origem. Use `sourceDatasets`, `inSpi`, `inPixActive`, `inPixAdhesion` para entender a origem de cada dado.
 
 ---
 

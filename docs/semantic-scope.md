@@ -20,7 +20,9 @@ Uma instituição pode aparecer em qualquer combinação dessas três fontes, co
 
 ## O que é `INSTITUTIONS`
 
-`INSTITUTIONS` é um **índice derivado de conveniência** gerado pelo pacote npm. Ele agrega os três datasets por ISPB para facilitar lookup e busca. **Não é um dataset canônico.**
+`INSTITUTIONS` é o **índice derivado oficial e lookup-safe por ISPB** gerado pelo pacote npm. Ele agrega os três datasets por ISPB para lookup e busca. **Não é um dataset canônico.**
+
+O contrato dessa camada é restrito e explícito: se um ISPB aparece de forma explícita em qualquer dataset canônico, o lookup por ISPB no pacote deve encontrar uma entrada correspondente em `INSTITUTIONS`.
 
 Para deixar claro o grau de certeza de cada entrada, todo `InstitutionEntry` carrega:
 
