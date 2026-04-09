@@ -5,7 +5,6 @@ import { loadPromotedCanonicalDatasets } from '../src/catalog/loaders.js';
 import {
   buildDataPackage,
   buildPackageProjection,
-  buildPagesSite,
   writeDerivedDocs,
   writeGeneratedPackageFiles,
   writeSchemaFiles,
@@ -14,11 +13,7 @@ import {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-type GenerateOptions = {
-  site?: boolean;
-};
-
-export async function generateArtifactsStage(repoRoot: string, options: GenerateOptions = {}) {
+export async function generateArtifactsStage(repoRoot: string) {
   const { datasets, manifest } = await loadPromotedCanonicalDatasets(repoRoot);
 
   await writeSchemaFiles(repoRoot);
@@ -29,12 +24,7 @@ export async function generateArtifactsStage(repoRoot: string, options: Generate
     await buildDataPackage(repoRoot, manifest)
   );
 
-  let siteRoot: string | undefined;
-  if (options.site) {
-    siteRoot = await buildPagesSite(repoRoot);
-  }
-
-  return { manifest, siteRoot };
+  return { manifest };
 }
 
 async function writeFileSafe(targetPath: string, content: string) {
@@ -44,13 +34,9 @@ async function writeFileSafe(targetPath: string, content: string) {
 
 async function main() {
   const repoRoot = path.resolve(__dirname, '..');
-  const includeSite = process.argv.includes('--site');
-  const result = await generateArtifactsStage(repoRoot, { site: includeSite });
+  const result = await generateArtifactsStage(repoRoot);
 
   console.log(`Generated artifacts from snapshot ${result.manifest.snapshot_date}.`);
-  if (result.siteRoot) {
-    console.log(`Site built at ${result.siteRoot}`);
-  }
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === __filename) {

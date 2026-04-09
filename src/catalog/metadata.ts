@@ -24,6 +24,8 @@ import type {
   DatasetName,
   DatasetRecord,
   Institution,
+  InstitutionEntry,
+  MatchConfidence,
   PackageProjection,
   ResolvedSource,
   SnapshotManifest,
@@ -374,6 +376,29 @@ function upsertInstitution(
   institutions.set(record.ispb, next);
 }
 
+function deriveMatchConfidence(ispb: string | null | undefined): MatchConfidence {
+  return ispb ? 'exact_ispb' : 'derived';
+}
+
+function institutionToEntry(
+  inst: Institution,
+  canonicalSourceBase: string
+): InstitutionEntry {
+  const inSpi = inst.sourceDatasets.includes('spi_participants');
+  const inPixActive = inst.sourceDatasets.includes('pix_active_participants');
+  const inPixAdhesion = inst.sourceDatasets.includes('pix_in_adhesion');
+  const matchConfidence: MatchConfidence = deriveMatchConfidence(inst.ispb);
+  const canonicalSource = `${canonicalSourceBase}/current`;
+  return {
+    ...inst,
+    inSpi,
+    inPixActive,
+    inPixAdhesion,
+    matchConfidence,
+    canonicalSource,
+  };
+}
+
 export function buildPackageProjection(
   datasets: CanonicalDatasets,
   manifest: SnapshotManifest
@@ -390,9 +415,11 @@ export function buildPackageProjection(
     upsertInstitution(institutions, 'pix_in_adhesion', record);
   }
 
-  const sortedInstitutions = Object.fromEntries(
-    [...institutions.entries()].sort((left, right) => left[0].localeCompare(right[0]))
-  );
+  const sortedEntries = [...institutions.entries()]
+    .sort((left, right) => left[0].localeCompare(right[0]))
+    .map(([ispb, inst]) => [ispb, institutionToEntry(inst, REPOSITORY_URL)] as const);
+
+  const sortedInstitutions = Object.fromEntries(sortedEntries);
 
   return {
     metadata: {
@@ -408,6 +435,9 @@ export function buildPackageProjection(
       sources: manifest.source_urls,
     },
     institutions: sortedInstitutions,
+    spiParticipants: datasets.spi_participants,
+    pixActiveParticipants: datasets.pix_active_participants,
+    pixInAdhesion: datasets.pix_in_adhesion,
   };
 }
 
@@ -417,13 +447,31 @@ function renderGeneratedCurrentModule(projection: PackageProjection): string {
     '// Source: ISPB Participants Catalog',
     '// To regenerate: npm run generate',
     '',
-    "import type { InstitutionIndex } from '../catalog/types.js';",
+    "import type { InstitutionIndex, SpiParticipantRecord, PixActiveParticipantRecord, PixInAdhesionRecord } from '../catalog/types.js';",
     '',
     `export const INSTITUTIONS: InstitutionIndex = ${JSON.stringify(
       projection.institutions,
       null,
       2
     )} as const;`,
+    '',
+    `export const SPI_PARTICIPANTS: SpiParticipantRecord[] = ${JSON.stringify(
+      projection.spiParticipants,
+      null,
+      2
+    )};`,
+    '',
+    `export const PIX_ACTIVE_PARTICIPANTS: PixActiveParticipantRecord[] = ${JSON.stringify(
+      projection.pixActiveParticipants,
+      null,
+      2
+    )};`,
+    '',
+    `export const PIX_IN_ADHESION: PixInAdhesionRecord[] = ${JSON.stringify(
+      projection.pixInAdhesion,
+      null,
+      2
+    )};`,
     '',
   ].join('\n');
 }
@@ -470,6 +518,7 @@ async function ensureCleanDirectory(targetDir: string) {
   await mkdir(targetDir, { recursive: true });
 }
 
+/** @deprecated Use the SSG in web/ (npm run build:web) instead. */
 export async function buildPagesSite(repoRoot: string): Promise<string> {
   const { marked } = await import('marked');
   const siteRoot = path.join(repoRoot, SITE_DIR);

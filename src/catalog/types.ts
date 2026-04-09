@@ -191,7 +191,35 @@ export interface Institution {
   sourceDatasets: readonly SourceDatasetName[];
 }
 
-export type InstitutionIndex = Record<string, Institution>;
+export type MatchConfidence = 'exact_ispb' | 'unique_cnpj' | 'no_auto_match' | 'derived';
+
+export interface InstitutionEntry {
+  ispb: string;
+  name: string;
+  shortName: string;
+  cnpj?: string;
+  spiParticipationType?: string;
+  pixParticipationType?: string;
+  pixParticipationMode?: string;
+  institutionType?: string;
+  authorizedByBcb?: boolean;
+  sourceDatasets: readonly SourceDatasetName[];
+  inSpi: boolean;
+  inPixActive: boolean;
+  inPixAdhesion: boolean;
+  matchConfidence: MatchConfidence;
+  canonicalSource: string;
+}
+
+export interface InstitutionStatus {
+  inSpi: boolean;
+  inPixActive: boolean;
+  inPixAdhesion: boolean;
+  matchConfidence: MatchConfidence;
+  canonicalSource: string;
+}
+
+export type InstitutionIndex = Record<string, InstitutionEntry>;
 
 export interface Metadata {
   source: string;
@@ -211,5 +239,8 @@ export interface PackageProjection {
   metadata: Metadata;
   catalogMetadata: CatalogMetadata;
   institutions: InstitutionIndex;
+  spiParticipants: SpiParticipantRecord[];
+  pixActiveParticipants: PixActiveParticipantRecord[];
+  pixInAdhesion: PixInAdhesionRecord[];
 }
 
