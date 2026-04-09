@@ -39,7 +39,7 @@
     "build": "tsup",
     "generate": "tsx scripts/generate-artifacts.ts",
     "build:web": "tsx web/ssg.ts",
-    "test": "vitest run",
+    "test": "vitest run --exclude test/smoke-sources.test.ts",
     "test:smoke-sources": "vitest run test/smoke-sources.test.ts",
     "prepublishOnly": "npm run generate && npm run build && npm run build:web"
   },
