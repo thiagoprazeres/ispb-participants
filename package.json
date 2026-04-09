@@ -1,0 +1,62 @@
+{
+  "name": "@thiagoprazeres/ispb-participants",
+  "version": "1.0.1",
+  "description": "JavaScript and TypeScript package for SPI and Pix participants, built from an internal auditable catalog derived from official Banco Central do Brasil sources",
+  "keywords": [
+    "pix",
+    "ispb",
+    "spi",
+    "banco-central",
+    "brazil",
+    "bacen",
+    "participants",
+    "catalog",
+    "dataset",
+    "fintech"
+  ],
+  "author": "Thiago Prazeres <thiago@cafeina.dev>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thiagoprazeres/ispb-participants.git"
+  },
+  "homepage": "https://github.com/thiagoprazeres/ispb-participants#readme",
+  "bugs": { "url": "https://github.com/thiagoprazeres/ispb-participants/issues" },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "LICENSE_DATA"],
+  "scripts": {
+    "update-catalog": "tsx scripts/update-catalog.ts",
+    "validate:catalog": "tsx scripts/validate-catalog.ts",
+    "build": "tsup",
+    "generate": "tsx scripts/generate-artifacts.ts",
+    "generate:site": "tsx scripts/generate-artifacts.ts --site",
+    "test": "vitest run",
+    "test:smoke-sources": "vitest run test/smoke-sources.test.ts",
+    "prepublishOnly": "npm run generate && npm run build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "@types/node": "^22.0.0",
+    "csv-parse": "^6.2.1",
+    "marked": "^15.0.7",
+    "tsup": "^8.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.0.0",
+    "vitest": "^3.0.0"
+  }
+}

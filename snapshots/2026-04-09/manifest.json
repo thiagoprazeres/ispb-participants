@@ -1,0 +1,95 @@
+{
+  "snapshot_date": "2026-04-09",
+  "collected_at": "2026-04-09T12:55:55.537Z",
+  "source_urls": {
+    "spi_participants": [
+      "https://www.bcb.gov.br/estabilidadefinanceira/sistemapagamentosinstantaneos",
+      "https://www.bcb.gov.br/api/paginasite/sitebcb/estabilidadefinanceira/sistemapagamentosinstantaneos",
+      "https://www.bcb.gov.br/content/estabilidadefinanceira/spi-pdf/participantes-spi-20260409.pdf",
+      "https://www.bcb.gov.br/content/estabilidadefinanceira/spi/participantes-spi-20260409.csv"
+    ],
+    "pix_active_participants": [
+      "https://www.bcb.gov.br/estabilidadefinanceira/pix-participantes",
+      "https://www.bcb.gov.br/api/paginasite/sitebcb/estabilidadefinanceira/pix-participantes",
+      "https://www.bcb.gov.br/content/estabilidadefinanceira/participantes_pix_pdf/lista-participantes-instituicoes-em-adesao-pix-20260409.pdf",
+      "https://www.bcb.gov.br/content/estabilidadefinanceira/participantes_pix/lista-participantes-instituicoes-em-adesao-pix-20260409.csv"
+    ],
+    "pix_in_adhesion": [
+      "https://www.bcb.gov.br/estabilidadefinanceira/pix-participantes",
+      "https://www.bcb.gov.br/api/paginasite/sitebcb/estabilidadefinanceira/pix-participantes",
+      "https://www.bcb.gov.br/content/estabilidadefinanceira/participantes_pix_pdf/lista-participantes-instituicoes-em-adesao-pix-20260409.pdf",
+      "https://www.bcb.gov.br/content/estabilidadefinanceira/participantes_pix/lista-participantes-instituicoes-em-adesao-pix-20260409.csv"
+    ],
+    "catalog_crosswalk": [
+      "https://www.bcb.gov.br/estabilidadefinanceira/sistemapagamentosinstantaneos",
+      "https://www.bcb.gov.br/api/paginasite/sitebcb/estabilidadefinanceira/sistemapagamentosinstantaneos",
+      "https://www.bcb.gov.br/content/estabilidadefinanceira/spi-pdf/participantes-spi-20260409.pdf",
+      "https://www.bcb.gov.br/content/estabilidadefinanceira/spi/participantes-spi-20260409.csv",
+      "https://www.bcb.gov.br/estabilidadefinanceira/pix-participantes",
+      "https://www.bcb.gov.br/api/paginasite/sitebcb/estabilidadefinanceira/pix-participantes",
+      "https://www.bcb.gov.br/content/estabilidadefinanceira/participantes_pix_pdf/lista-participantes-instituicoes-em-adesao-pix-20260409.pdf",
+      "https://www.bcb.gov.br/content/estabilidadefinanceira/participantes_pix/lista-participantes-instituicoes-em-adesao-pix-20260409.csv",
+      "https://www.bcb.gov.br/estabilidadefinanceira/pix-participantes",
+      "https://www.bcb.gov.br/api/paginasite/sitebcb/estabilidadefinanceira/pix-participantes",
+      "https://www.bcb.gov.br/content/estabilidadefinanceira/participantes_pix_pdf/lista-participantes-instituicoes-em-adesao-pix-20260409.pdf",
+      "https://www.bcb.gov.br/content/estabilidadefinanceira/participantes_pix/lista-participantes-instituicoes-em-adesao-pix-20260409.csv"
+    ]
+  },
+  "source_publication_dates": {
+    "spi_participants": "2026-04-09",
+    "pix_active_participants": "2026-04-09",
+    "pix_in_adhesion": "2026-04-09",
+    "catalog_crosswalk": null
+  },
+  "dataset_hashes": {
+    "spi_participants": {
+      "csv_sha256": "5402a73d7f83583b05a4d00f1c933fc1e27ad9772dbc38930c1f38f032d8260e",
+      "json_sha256": "f9a00b69dfb51cfeefb52e6873995e2c5ae1c1d6f59cfbb0f61f3ba1d41d5a47"
+    },
+    "pix_active_participants": {
+      "csv_sha256": "5f23b981afba78489b0d262a59e83bfca4b93db9100d3338273e09eacd55618c",
+      "json_sha256": "09284004026ec07d886186efc7c19f579f104d5872a73f95ad79f65f09d21258"
+    },
+    "pix_in_adhesion": {
+      "csv_sha256": "01d891669744fac537da55e3fa1b3de2a3d7d1c0c7d53aba1bca7d2eaf7f286a",
+      "json_sha256": "756da4194ac8c6520a345a783efd8f5b76a6628cb84be23e241ff84d2ab3394b"
+    },
+    "catalog_crosswalk": {
+      "csv_sha256": "96789354c816183744b59649f07053580f8a9c069b14dab734fa3d93bb49c205",
+      "json_sha256": "870bcb0b8a6dc6a50ece14416c185e7579ff609d1575339d11ea1539f876bb63"
+    }
+  },
+  "record_counts": {
+    "spi_participants": 892,
+    "pix_active_participants": 910,
+    "pix_in_adhesion": 21,
+    "catalog_crosswalk": 1823
+  },
+  "schema_versions": {
+    "spi_participants": "1.0.0",
+    "pix_active_participants": "1.0.0",
+    "pix_in_adhesion": "1.0.0",
+    "catalog_crosswalk": "1.0.0"
+  },
+  "pipeline_version": "2026.04.09",
+  "validation_status": {
+    "status": "passed",
+    "checks": [
+      "schema:spi_participants",
+      "schema:pix_active_participants",
+      "schema:pix_in_adhesion",
+      "schema:catalog_crosswalk",
+      "crosswalk:one-row-per-source-record",
+      "integrity:row-counts"
+    ]
+  },
+  "warnings": [
+    {
+      "severity": "warning",
+      "dataset": "catalog_crosswalk",
+      "stage": "semantic",
+      "message": "No-ISPB CNPJ 13776742000155 was kept conservative in the crosswalk because it is ambiguous or conflicts with an ISPB-bearing record."
+    }
+  ],
+  "errors": []
+}

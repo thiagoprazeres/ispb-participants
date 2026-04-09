@@ -1,0 +1,38 @@
+[
+  {
+    "id": "bcb-spi-participants",
+    "dataset": "spi_participants",
+    "official_page_url": "https://www.bcb.gov.br/estabilidadefinanceira/sistemapagamentosinstantaneos",
+    "official_page_api_url": "https://www.bcb.gov.br/api/paginasite/sitebcb/estabilidadefinanceira/sistemapagamentosinstantaneos",
+    "content_identifier": "spi-pdf",
+    "expected_title_pattern": "Relação de participantes do SPI",
+    "preferred_format": "csv",
+    "accepted_fallback_formats": ["pdf"],
+    "notes": "O catalogo resolve o PDF publicado na pagina oficial do SPI e extrai dele o link oficial do CSV embutido no proprio documento.",
+    "license_notice": "Fonte oficial publica do Banco Central do Brasil. A titularidade da fonte original permanece com o publicador oficial."
+  },
+  {
+    "id": "bcb-pix-active-participants",
+    "dataset": "pix_active_participants",
+    "official_page_url": "https://www.bcb.gov.br/estabilidadefinanceira/pix-participantes",
+    "official_page_api_url": "https://www.bcb.gov.br/api/paginasite/sitebcb/estabilidadefinanceira/pix-participantes",
+    "content_identifier": "participantes_pix_pdf",
+    "expected_title_pattern": "Participantes do Pix",
+    "preferred_format": "csv",
+    "accepted_fallback_formats": ["pdf"],
+    "notes": "A publicacao oficial atual do Pix contem um CSV oficial unico com duas secoes: participantes ativos e instituicoes em processo de adesao.",
+    "license_notice": "Fonte oficial publica do Banco Central do Brasil. A titularidade da fonte original permanece com o publicador oficial."
+  },
+  {
+    "id": "bcb-pix-in-adhesion",
+    "dataset": "pix_in_adhesion",
+    "official_page_url": "https://www.bcb.gov.br/estabilidadefinanceira/pix-participantes",
+    "official_page_api_url": "https://www.bcb.gov.br/api/paginasite/sitebcb/estabilidadefinanceira/pix-participantes",
+    "content_identifier": "participantes_pix_pdf",
+    "expected_title_pattern": "instituições em adesão ao Pix",
+    "preferred_format": "csv",
+    "accepted_fallback_formats": ["pdf"],
+    "notes": "A secao de adesao e extraida conservadoramente da parte identificada como 'Lista de instituicoes em processo de adesao ao Pix' no CSV oficial.",
+    "license_notice": "Fonte oficial publica do Banco Central do Brasil. A titularidade da fonte original permanece com o publicador oficial."
+  }
+]

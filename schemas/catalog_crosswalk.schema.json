@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/thiagoprazeres/ispb-participants/schemas/catalog_crosswalk.schema.json",
+  "title": "catalog_crosswalk",
+  "description": "Schema for the conservative crosswalk that links source rows without silently inventing equivalences.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "dataset": {
+      "type": "string",
+      "const": "catalog_crosswalk",
+      "description": "Canonical dataset name."
+    },
+    "catalog_entity_id": {
+      "type": "string",
+      "description": "Stable derived catalog entity identifier."
+    },
+    "source_dataset": {
+      "type": "string",
+      "description": "Origin dataset for this crosswalk row."
+    },
+    "source_record_id": {
+      "type": "string",
+      "description": "Origin source record identifier."
+    },
+    "source_snapshot_date": {
+      "type": "string",
+      "description": "Origin snapshot date in YYYY-MM-DD format.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "match_method": {
+      "type": "string",
+      "enum": [
+        "exact_ispb",
+        "unique_cnpj",
+        "no_auto_match"
+      ],
+      "description": "Matching method used by the crosswalk."
+    },
+    "match_basis": {
+      "type": "string",
+      "description": "Human-readable explanation of the matching basis."
+    },
+    "linked_ispb": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Linked ISPB when available.",
+      "pattern": "^\\d{8}$"
+    },
+    "linked_cnpj": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Linked CNPJ when available.",
+      "pattern": "^\\d{14}$"
+    },
+    "linked_name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Linked institution name when available."
+    },
+    "source_registry_id": {
+      "type": "string",
+      "description": "Source registry entry identifier."
+    },
+    "source_file_url": {
+      "type": "string",
+      "description": "Direct official source artifact URL used for derivation."
+    },
+    "source_publication_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Official publication date when available.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "catalog_snapshot_date": {
+      "type": "string",
+      "description": "Catalog snapshot date in YYYY-MM-DD format.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "schema_version": {
+      "type": "string",
+      "description": "Schema version used to validate this row."
+    }
+  },
+  "required": [
+    "dataset",
+    "catalog_entity_id",
+    "source_dataset",
+    "source_record_id",
+    "source_snapshot_date",
+    "match_method",
+    "match_basis",
+    "linked_ispb",
+    "linked_cnpj",
+    "linked_name",
+    "source_registry_id",
+    "source_file_url",
+    "source_publication_date",
+    "catalog_snapshot_date",
+    "schema_version"
+  ]
+}

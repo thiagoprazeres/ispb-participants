@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/thiagoprazeres/ispb-participants/schemas/pix_in_adhesion.schema.json",
+  "title": "pix_in_adhesion",
+  "description": "Schema for the Pix institutions in adhesion dataset derived from the official Banco Central Pix participant publication.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "dataset": {
+      "type": "string",
+      "const": "pix_in_adhesion",
+      "description": "Canonical dataset name."
+    },
+    "source_record_id": {
+      "type": "string",
+      "description": "Stable per-snapshot identifier for the source row."
+    },
+    "ispb": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Eight-digit ISPB when available.",
+      "pattern": "^\\d{8}$"
+    },
+    "cnpj": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Fourteen-digit CNPJ when available.",
+      "pattern": "^\\d{14}$"
+    },
+    "institution_name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Normalized institution name derived from the official source."
+    },
+    "short_name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Reduced or short institution name derived from the official source."
+    },
+    "institution_type": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Institution type as published by the official source."
+    },
+    "spi_participation_type": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "SPI participation type in normalized human-readable form."
+    },
+    "pix_participation_type": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Pix participation type in normalized human-readable form."
+    },
+    "pix_participation_mode": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Pix participation mode in normalized human-readable form."
+    },
+    "is_authorized_by_bcb": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "Whether the institution is authorized by Banco Central do Brasil."
+    },
+    "catalog_snapshot_date": {
+      "type": "string",
+      "description": "Catalog snapshot date in YYYY-MM-DD format.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "source_registry_id": {
+      "type": "string",
+      "description": "Identifier of the official source entry in sources/registry.json."
+    },
+    "source_file_url": {
+      "type": "string",
+      "description": "Direct official source artifact URL used for derivation."
+    },
+    "source_publication_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Official publication date when available.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "schema_version": {
+      "type": "string",
+      "description": "Schema version used to validate this record."
+    },
+    "raw_source_json": {
+      "type": "string",
+      "description": "JSON-serialized raw source row. New upstream columns are preserved here first."
+    },
+    "adhesion_status": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Official adhesion status as published by Banco Central."
+    }
+  },
+  "required": [
+    "dataset",
+    "source_record_id",
+    "ispb",
+    "cnpj",
+    "institution_name",
+    "short_name",
+    "institution_type",
+    "spi_participation_type",
+    "pix_participation_type",
+    "pix_participation_mode",
+    "is_authorized_by_bcb",
+    "catalog_snapshot_date",
+    "source_registry_id",
+    "source_file_url",
+    "source_publication_date",
+    "schema_version",
+    "raw_source_json",
+    "adhesion_status"
+  ]
+}

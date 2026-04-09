@@ -1,0 +1,130 @@
+{
+  "profile": "data-package",
+  "name": "ispb-participants-catalog",
+  "id": "https://github.com/thiagoprazeres/ispb-participants",
+  "title": "ISPB Participants Catalog",
+  "description": "ISPB Participants Catalog - Catálogo público derivado de fonte oficial do Banco Central. Static versioned artifacts are distributed from current/ and snapshots/.",
+  "licenses": [
+    {
+      "name": "ODC-By-1.0",
+      "title": "Open Data Commons Attribution License 1.0",
+      "path": "https://opendatacommons.org/licenses/by/1-0/"
+    }
+  ],
+  "sources": [
+    {
+      "path": "https://www.bcb.gov.br/estabilidadefinanceira/sistemapagamentosinstantaneos"
+    },
+    {
+      "path": "https://www.bcb.gov.br/api/paginasite/sitebcb/estabilidadefinanceira/sistemapagamentosinstantaneos"
+    },
+    {
+      "path": "https://www.bcb.gov.br/content/estabilidadefinanceira/spi-pdf/participantes-spi-20260409.pdf"
+    },
+    {
+      "path": "https://www.bcb.gov.br/content/estabilidadefinanceira/spi/participantes-spi-20260409.csv"
+    },
+    {
+      "path": "https://www.bcb.gov.br/estabilidadefinanceira/pix-participantes"
+    },
+    {
+      "path": "https://www.bcb.gov.br/api/paginasite/sitebcb/estabilidadefinanceira/pix-participantes"
+    },
+    {
+      "path": "https://www.bcb.gov.br/content/estabilidadefinanceira/participantes_pix_pdf/lista-participantes-instituicoes-em-adesao-pix-20260409.pdf"
+    },
+    {
+      "path": "https://www.bcb.gov.br/content/estabilidadefinanceira/participantes_pix/lista-participantes-instituicoes-em-adesao-pix-20260409.csv"
+    }
+  ],
+  "resources": [
+    {
+      "name": "spi_participants_csv",
+      "path": "current/spi_participants.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "schema": "schemas/spi_participants.schema.json",
+      "hash": "5402a73d7f83583b05a4d00f1c933fc1e27ad9772dbc38930c1f38f032d8260e",
+      "bytes": 626498,
+      "rows": 892
+    },
+    {
+      "name": "spi_participants_json",
+      "path": "current/spi_participants.json",
+      "format": "json",
+      "mediatype": "application/json",
+      "schema": "schemas/spi_participants.schema.json",
+      "hash": "f9a00b69dfb51cfeefb52e6873995e2c5ae1c1d6f59cfbb0f61f3ba1d41d5a47",
+      "bytes": 1140575,
+      "rows": 892
+    },
+    {
+      "name": "pix_active_participants_csv",
+      "path": "current/pix_active_participants.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "schema": "schemas/pix_active_participants.schema.json",
+      "hash": "5f23b981afba78489b0d262a59e83bfca4b93db9100d3338273e09eacd55618c",
+      "bytes": 765082,
+      "rows": 910
+    },
+    {
+      "name": "pix_active_participants_json",
+      "path": "current/pix_active_participants.json",
+      "format": "json",
+      "mediatype": "application/json",
+      "schema": "schemas/pix_active_participants.schema.json",
+      "hash": "09284004026ec07d886186efc7c19f579f104d5872a73f95ad79f65f09d21258",
+      "bytes": 1250451,
+      "rows": 910
+    },
+    {
+      "name": "pix_in_adhesion_csv",
+      "path": "current/pix_in_adhesion.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "schema": "schemas/pix_in_adhesion.schema.json",
+      "hash": "01d891669744fac537da55e3fa1b3de2a3d7d1c0c7d53aba1bca7d2eaf7f286a",
+      "bytes": 17044,
+      "rows": 21
+    },
+    {
+      "name": "pix_in_adhesion_json",
+      "path": "current/pix_in_adhesion.json",
+      "format": "json",
+      "mediatype": "application/json",
+      "schema": "schemas/pix_in_adhesion.schema.json",
+      "hash": "756da4194ac8c6520a345a783efd8f5b76a6628cb84be23e241ff84d2ab3394b",
+      "bytes": 26880,
+      "rows": 21
+    },
+    {
+      "name": "catalog_crosswalk_csv",
+      "path": "current/catalog_crosswalk.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "schema": "schemas/catalog_crosswalk.schema.json",
+      "hash": "96789354c816183744b59649f07053580f8a9c069b14dab734fa3d93bb49c205",
+      "bytes": 623225,
+      "rows": 1823
+    },
+    {
+      "name": "catalog_crosswalk_json",
+      "path": "current/catalog_crosswalk.json",
+      "format": "json",
+      "mediatype": "application/json",
+      "schema": "schemas/catalog_crosswalk.schema.json",
+      "hash": "870bcb0b8a6dc6a50ece14416c185e7579ff609d1575339d11ea1539f876bb63",
+      "bytes": 1341049,
+      "rows": 1823
+    },
+    {
+      "name": "manifest_json",
+      "path": "current/manifest.json",
+      "format": "json",
+      "mediatype": "application/json",
+      "hash": "1bdfd44479ec07cfce33e8449db168ce490f241e69ad93ebd3558abbd39158c9",
+      "bytes": 4836
+    }
+  ]
+}
