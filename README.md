@@ -10,6 +10,17 @@ O ISPB Participants Catalog é um catálogo público derivado de fonte oficial d
 
 **Não é a fonte oficial. Não substitui a consulta oficial.**
 
+## Contagens públicas
+
+Este repositório é um catálogo **multi-dataset**. As contagens públicas devem ser lidas por dataset, usando `current/manifest.json` como fonte de verdade.
+
+- `910` refere-se **somente** a `pix_active_participants` no snapshot atual.
+- `892` refere-se a `spi_participants` no snapshot atual.
+- `21` refere-se a `pix_in_adhesion` no snapshot atual.
+- `1823` refere-se a `catalog_crosswalk` no snapshot atual.
+
+Não existe um único número genérico de manchete que represente “o tamanho total do catálogo”, porque o catálogo combina datasets com escopos semânticos diferentes e um crosswalk derivado.
+
 ## Getting started
 
 ```bash
@@ -58,8 +69,8 @@ const existe = hasIspb('60746948'); // true
 | `getInstitutionStatusByIspb(ispb)` | função | Status resumido de participação |
 | `searchInstitutionsByName(query)` | função | Busca por nome (ascii-folded) |
 | `hasIspb(ispb)` | função | Verifica existência no índice |
-| `getMetadata()` | função | Metadados do snapshot |
-| `getCatalogMetadata()` | função | Metadados completos do catálogo |
+| `getMetadata()` | função | Resumo público canônico com contagens explícitas por dataset |
+| `getCatalogMetadata()` | função | Metadados completos do catálogo com as mesmas contagens explícitas |
 
 > [Referência completa da API →](./docs/api.md) | [Qual export usar? →](./docs/which-export.md)
 
@@ -136,6 +147,7 @@ inst.sourceDatasets  // datasets canônicos que contribuíram
 - [Datasets](./docs/datasets.md)
 - [Escopo semântico](./docs/semantic-scope.md)
 - [Schemas](./docs/schemas.md)
+- [Contagens e escopo](./docs/counts.md)
 - [Proveniência](./docs/provenance.md)
 - [Política de atualização](./docs/update-policy.md)
 - [Licenças](./docs/licenses.md)

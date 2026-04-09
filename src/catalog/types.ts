@@ -224,13 +224,24 @@ export type InstitutionIndex = Record<string, InstitutionEntry>;
 export interface Metadata {
   source: string;
   sourceUrl: string;
+  snapshotDate: string;
+  spiParticipantCount: number;
+  pixActiveParticipantCount: number;
+  pixInAdhesionCount: number;
+  crosswalkRecordCount: number;
+  /** @deprecated Use snapshotDate instead. */
   sourceDate: string;
+  /** @deprecated Use pixActiveParticipantCount instead. This is not a catalog-wide total. */
   recordCount: number;
 }
 
 export interface CatalogMetadata {
   catalogUrl: string;
   snapshotDate: string;
+  spiParticipantCount: number;
+  pixActiveParticipantCount: number;
+  pixInAdhesionCount: number;
+  crosswalkRecordCount: number;
   manifest: SnapshotManifest;
   sources: Record<string, readonly string[]>;
 }
@@ -243,4 +254,3 @@ export interface PackageProjection {
   pixActiveParticipants: PixActiveParticipantRecord[];
   pixInAdhesion: PixInAdhesionRecord[];
 }
-

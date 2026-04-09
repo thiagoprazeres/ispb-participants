@@ -72,8 +72,13 @@ describe('getMetadata', () => {
     expect(meta.source).toBeTruthy();
     expect(meta.sourceUrl).toContain('thiagoprazeres/ispb-participants');
     expect(meta.sourceUrl).toContain('/current');
+    expect(meta.snapshotDate).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(meta.spiParticipantCount).toBeGreaterThan(0);
+    expect(meta.pixActiveParticipantCount).toBeGreaterThan(0);
+    expect(meta.pixInAdhesionCount).toBeGreaterThanOrEqual(0);
+    expect(meta.crosswalkRecordCount).toBeGreaterThan(0);
     expect(meta.sourceDate).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-    expect(meta.recordCount).toBeGreaterThan(0);
+    expect(meta.recordCount).toBe(meta.pixActiveParticipantCount);
   });
 });
 
@@ -82,6 +87,14 @@ describe('getCatalogMetadata', () => {
     const metadata = getCatalogMetadata();
     expect(metadata.catalogUrl).toContain('thiagoprazeres/ispb-participants');
     expect(metadata.snapshotDate).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(metadata.spiParticipantCount).toBe(metadata.manifest.record_counts.spi_participants);
+    expect(metadata.pixActiveParticipantCount).toBe(
+      metadata.manifest.record_counts.pix_active_participants
+    );
+    expect(metadata.pixInAdhesionCount).toBe(metadata.manifest.record_counts.pix_in_adhesion);
+    expect(metadata.crosswalkRecordCount).toBe(
+      metadata.manifest.record_counts.catalog_crosswalk
+    );
     expect(metadata.manifest.snapshot_date).toBe(metadata.snapshotDate);
     expect(metadata.manifest.validation_status.status).toBe('passed');
     expect(metadata.sources.spi_participants.some(url => url.includes('bcb.gov.br'))).toBe(true);

@@ -7,6 +7,11 @@ import type { CatalogMetadata, Metadata } from '../catalog/types.js';
 export const METADATA: Metadata = {
   "source": "ISPB Participants Catalog current snapshot",
   "sourceUrl": "https://github.com/thiagoprazeres/ispb-participants/tree/main/current",
+  "snapshotDate": "2026-04-09",
+  "spiParticipantCount": 892,
+  "pixActiveParticipantCount": 910,
+  "pixInAdhesionCount": 21,
+  "crosswalkRecordCount": 1823,
   "sourceDate": "2026-04-09",
   "recordCount": 910
 } as const;
@@ -14,6 +19,10 @@ export const METADATA: Metadata = {
 export const CATALOG_METADATA: CatalogMetadata = {
   "catalogUrl": "https://github.com/thiagoprazeres/ispb-participants",
   "snapshotDate": "2026-04-09",
+  "spiParticipantCount": 892,
+  "pixActiveParticipantCount": 910,
+  "pixInAdhesionCount": 21,
+  "crosswalkRecordCount": 1823,
   "manifest": {
     "snapshot_date": "2026-04-09",
     "collected_at": "2026-04-09T12:55:55.537Z",

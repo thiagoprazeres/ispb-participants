@@ -118,7 +118,20 @@ Busca textual case-insensitive e accent-insensitive em `name` e `shortName`. Ret
 function getMetadata(): Metadata
 ```
 
-Retorna metadados do snapshot embutido: `source`, `sourceUrl`, `sourceDate`, `recordCount`.
+Retorna o resumo público canônico do snapshot embutido, com `snapshotDate` e contagens explícitas por dataset.
+
+Campos canônicos do resumo público:
+
+- `snapshotDate`
+- `spiParticipantCount`
+- `pixActiveParticipantCount`
+- `pixInAdhesionCount`
+- `crosswalkRecordCount`
+
+Campos mantidos por compatibilidade:
+
+- `sourceDate` — deprecated alias de `snapshotDate`
+- `recordCount` — deprecated alias de `pixActiveParticipantCount`; **não** é total do catálogo
 
 ### `getCatalogMetadata()`
 
@@ -126,7 +139,7 @@ Retorna metadados do snapshot embutido: `source`, `sourceUrl`, `sourceDate`, `re
 function getCatalogMetadata(): CatalogMetadata
 ```
 
-Retorna metadados detalhados do catálogo: `catalogUrl`, `snapshotDate`, `manifest`, `sources`. O `manifest` contém hashes, contagens, versões de schema, status de validação e proveniência completa.
+Retorna metadados detalhados do catálogo: `catalogUrl`, `snapshotDate`, `spiParticipantCount`, `pixActiveParticipantCount`, `pixInAdhesionCount`, `crosswalkRecordCount`, `manifest`, `sources`. O `manifest` contém hashes, contagens, versões de schema, status de validação e proveniência completa.
 
 ---
 
