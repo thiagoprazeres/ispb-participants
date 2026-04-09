@@ -120,6 +120,22 @@ th, td { border: 1px solid var(--line); padding: 0.5rem 0.75rem; text-align: lef
 th { background: var(--paper); font-weight: 600; }
 hr { border: none; border-top: 1px solid var(--line); margin: 2rem 0; }
 
+/* skip link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  background: var(--brand);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  z-index: 9999;
+  text-decoration: none;
+  border-radius: 0 0 var(--radius) 0;
+}
+.skip-link:focus { top: 0; }
+
 /* layout */
 .site-header {
   background: var(--bg);
@@ -297,7 +313,7 @@ hr { border: none; border-top: 1px solid var(--line); margin: 2rem 0; }
 
 const NAV_PAGES = [
   { slug: 'index', label: 'Catálogo' },
-  { slug: 'getting-started', label: 'Getting started', docFile: 'getting-started.md' },
+  { slug: 'getting-started', label: 'Primeiros passos', docFile: 'getting-started.md' },
   { slug: 'api', label: 'API', docFile: 'api.md' },
   { slug: 'which-export', label: 'Qual export?', docFile: 'which-export.md' },
   { slug: 'datasets', label: 'Datasets', docFile: 'datasets.md' },
@@ -305,14 +321,27 @@ const NAV_PAGES = [
   { slug: 'provenance', label: 'Proveniência', docFile: 'provenance.md' },
   { slug: 'schemas', label: 'Schemas', docFile: 'schemas.md' },
   { slug: 'snapshots', label: 'Snapshots', docFile: 'snapshots.md' },
-  { slug: 'changelog', label: 'Changelog', docFile: 'changelog.md' },
+  { slug: 'changelog', label: 'Histórico', docFile: 'changelog.md' },
 ] as const;
+
+const SITE_URL = 'https://thiagoprazeres.github.io/ispb-participants';
+const SITE_NAME = 'ISPB Participants Catalog';
+const SITE_DESCRIPTION = 'Catálogo público derivado de fonte oficial do Banco Central do Brasil para participantes do SPI e do Pix.';
+const SITE_AUTHOR = 'Thiago Prazeres';
+
+function pageUrl(slug: string): string {
+  if (slug === 'index') return `${SITE_URL}/index.html`;
+  return `${SITE_URL}/${slug}.html`;
+}
 
 function layout(opts: {
   title: string;
   activeSlug: string;
   content: string;
   snapshotDate: string;
+  description?: string;
+  canonicalUrl?: string;
+  structuredData?: object;
 }): string {
   const nav = NAV_PAGES.map(p => {
     const isActive = p.slug === opts.activeSlug;
@@ -320,17 +349,20 @@ function layout(opts: {
     return `<a href="${href}"${isActive ? ' class="active"' : ''}>${p.label}</a>`;
   }).join('\n        ');
 
-  const faviconSvg = LOGO_SQUARE_SVG
-    .replace(/^<svg /, '<svg ')
-    .trim();
+  const faviconSvg = LOGO_SQUARE_SVG.trim();
   const faviconDataUri = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
-  const ogImage = `${BASE}/logo-square.svg`;
+  const ogImage = `${SITE_URL}/logo-square.svg`;
   const pageTitle = opts.activeSlug === 'index'
-    ? 'ISPB Participants Catalog'
-    : `${opts.title} — ISPB Participants Catalog`;
+    ? SITE_NAME
+    : `${opts.title} — ${SITE_NAME}`;
+  const description = opts.description ?? SITE_DESCRIPTION;
+  const canonical = opts.canonicalUrl ?? pageUrl(opts.activeSlug);
   const logoInline = LOGO_SVG
     .replace(' width="320" height="64"', ' width="200" height="40"')
     .trim();
+  const ldJson = opts.structuredData
+    ? `<script type="application/ld+json">${JSON.stringify(opts.structuredData)}</script>`
+    : '';
 
   return `<!doctype html>
 <html lang="pt-BR">
@@ -338,23 +370,36 @@ function layout(opts: {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${pageTitle}</title>
-  <meta name="description" content="Catálogo público derivado de fonte oficial do Banco Central do Brasil para participantes do SPI e do Pix.">
+  <meta name="description" content="${description}">
+  <meta name="author" content="${SITE_AUTHOR}">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="${COLORS.brand}">
+  <link rel="canonical" href="${canonical}">
+  <meta property="og:site_name" content="${SITE_NAME}">
   <meta property="og:title" content="${pageTitle}">
-  <meta property="og:description" content="Catálogo público de participantes do SPI e do Pix. Snapshot: ${opts.snapshotDate}.">
+  <meta property="og:description" content="${description}">
   <meta property="og:image" content="${ogImage}">
+  <meta property="og:image:type" content="image/svg+xml">
+  <meta property="og:url" content="${canonical}">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
   <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="${pageTitle}">
+  <meta name="twitter:description" content="${description}">
+  <meta name="twitter:image" content="${ogImage}">
   <link rel="icon" type="image/svg+xml" href="${faviconDataUri}">
+  ${ldJson}
   <style>${CSS}</style>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Ir para o conteúdo</a>
   <header class="site-header">
-    <a href="${BASE}/index.html" class="brand" aria-label="ISPB Participants Catalog">${logoInline}</a>
-    <nav class="site-nav">
+    <a href="${BASE}/index.html" class="brand" aria-label="${SITE_NAME}">${logoInline}</a>
+    <nav class="site-nav" aria-label="Navegação principal">
       ${nav}
     </nav>
   </header>
-  <main class="site-main">
+  <main id="main-content" class="site-main">
     ${opts.content}
   </main>
   <footer class="site-footer">
@@ -523,11 +568,24 @@ function buildIndexPage(meta: ReturnType<typeof getMetadata>): string {
 })();
 </script>`;
 
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE_NAME,
+    url: SITE_URL,
+    description: SITE_DESCRIPTION,
+    author: { '@type': 'Person', name: SITE_AUTHOR },
+    inLanguage: 'pt-BR',
+  };
+
   return layout({
     title: 'Catálogo',
     activeSlug: 'index',
     content,
     snapshotDate: meta.sourceDate,
+    description: SITE_DESCRIPTION,
+    canonicalUrl: `${SITE_URL}/index.html`,
+    structuredData,
   });
 }
 
@@ -589,11 +647,33 @@ function buildInstitutionPage(entry: InstitutionEntry, snapshotDate: string): st
   Dados canônicos em: <a href="${entry.canonicalSource}" target="_blank" rel="noopener">${entry.canonicalSource}</a>
 </p>`;
 
+  const participationParts: string[] = [];
+  if (entry.inSpi) participationParts.push('participante do SPI');
+  if (entry.inPixActive) participationParts.push('participante ativo do Pix');
+  else if (entry.inPixAdhesion) participationParts.push('em processo de adesão ao Pix');
+  const participationStr = participationParts.length > 0
+    ? participationParts.join(' e ')
+    : 'sem participação ativa identificada';
+  const description = `${entry.shortName} (ISPB ${entry.ispb}) — ${participationStr}. Catálogo ISPB Participants.`;
+
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: entry.name,
+    alternateName: entry.shortName !== entry.name ? entry.shortName : undefined,
+    identifier: entry.ispb,
+    url: `${SITE_URL}/institutions/${entry.ispb}.html`,
+    ...(entry.cnpj ? { taxID: entry.cnpj } : {}),
+  };
+
   return layout({
     title: entry.name,
     activeSlug: 'index',
     content,
     snapshotDate,
+    description,
+    canonicalUrl: `${SITE_URL}/institutions/${entry.ispb}.html`,
+    structuredData,
   });
 }
 
@@ -609,6 +689,22 @@ function matchConfidenceLabel(conf: InstitutionEntry['matchConfidence']): string
 
 // ─── doc page ─────────────────────────────────────────────────────────────────
 
+function extractFirstParagraph(md: string): string {
+  const lines = md.split('\n');
+  const para: string[] = [];
+  let inPara = false;
+  for (const line of lines) {
+    if (line.startsWith('#')) continue;
+    if (line.trim() === '') {
+      if (inPara) break;
+      continue;
+    }
+    inPara = true;
+    para.push(line.trim());
+  }
+  return para.join(' ').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').slice(0, 160);
+}
+
 async function buildDocPage(opts: {
   slug: string;
   docFile: string;
@@ -619,11 +715,27 @@ async function buildDocPage(opts: {
   const md = await readFile(mdPath, 'utf8');
   const html = await marked.parse(md);
   const label = NAV_PAGES.find(p => p.slug === opts.slug)?.label ?? opts.slug;
+  const description = extractFirstParagraph(md) || SITE_DESCRIPTION;
+  const canonical = pageUrl(opts.slug);
+
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: `${label} — ${SITE_NAME}`,
+    url: canonical,
+    description,
+    inLanguage: 'pt-BR',
+    isPartOf: { '@type': 'WebSite', url: SITE_URL, name: SITE_NAME },
+  };
+
   return layout({
     title: label,
     activeSlug: opts.slug,
     content: html,
     snapshotDate: opts.snapshotDate,
+    description,
+    canonicalUrl: canonical,
+    structuredData,
   });
 }
 
