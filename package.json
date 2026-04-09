@@ -1,6 +1,6 @@
 {
   "name": "@thiagoprazeres/ispb-participants",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "JavaScript and TypeScript package for SPI and Pix participants, built from an internal auditable catalog derived from official Banco Central do Brasil sources",
   "keywords": [
     "pix",
