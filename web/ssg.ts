@@ -18,6 +18,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, '..');
 const SITE_DIR = path.join(REPO_ROOT, 'site');
+const BASE = (process.env.BASE_PATH ?? '/ispb-participants').replace(/\/$/, '');
 
 // ─── import canonical data from src/index.ts (no logic duplication) ──────────
 
@@ -304,7 +305,7 @@ function layout(opts: {
 }): string {
   const nav = NAV_PAGES.map(p => {
     const isActive = p.slug === opts.activeSlug;
-    const href = p.slug === 'index' ? '/index.html' : `/${p.slug}.html`;
+    const href = p.slug === 'index' ? `${BASE}/index.html` : `${BASE}/${p.slug}.html`;
     return `<a href="${href}"${isActive ? ' class="active"' : ''}>${p.label}</a>`;
   }).join('\n        ');
 
@@ -318,7 +319,7 @@ function layout(opts: {
 </head>
 <body>
   <header class="site-header">
-    <a href="/index.html" class="brand">ISPB Participants Catalog</a>
+    <a href="${BASE}/index.html" class="brand">ISPB Participants Catalog</a>
     <nav class="site-nav">
       ${nav}
     </nav>
@@ -392,7 +393,7 @@ function buildIndexPage(meta: ReturnType<typeof getMetadata>): string {
   <p class="hero-meta">
     Snapshot: <strong>${meta.sourceDate}</strong> ·
     ${meta.recordCount} instituições indexadas ·
-    <a href="/datasets.html">4 datasets canônicos</a>
+    <a href="${BASE}/datasets.html">4 datasets canônicos</a>
   </p>
 </div>
 
@@ -411,12 +412,12 @@ function buildIndexPage(meta: ReturnType<typeof getMetadata>): string {
 <h2>Artefatos do catálogo</h2>
 <div class="card">
   <div style="display:grid;gap:0.5rem;font-size:0.9rem;">
-    <div>📄 <a href="/current/spi_participants.json">current/spi_participants.json</a> &nbsp;·&nbsp; <a href="/current/spi_participants.csv">CSV</a></div>
-    <div>📄 <a href="/current/pix_active_participants.json">current/pix_active_participants.json</a> &nbsp;·&nbsp; <a href="/current/pix_active_participants.csv">CSV</a></div>
-    <div>📄 <a href="/current/pix_in_adhesion.json">current/pix_in_adhesion.json</a> &nbsp;·&nbsp; <a href="/current/pix_in_adhesion.csv">CSV</a></div>
-    <div>📄 <a href="/current/catalog_crosswalk.json">current/catalog_crosswalk.json</a> &nbsp;·&nbsp; <a href="/current/catalog_crosswalk.csv">CSV</a></div>
-    <div>📋 <a href="/current/manifest.json">current/manifest.json</a></div>
-    <div>📦 <a href="/datapackage.json">datapackage.json</a></div>
+    <div>📄 <a href="${BASE}/current/spi_participants.json">current/spi_participants.json</a> &nbsp;·&nbsp; <a href="${BASE}/current/spi_participants.csv">CSV</a></div>
+    <div>📄 <a href="${BASE}/current/pix_active_participants.json">current/pix_active_participants.json</a> &nbsp;·&nbsp; <a href="${BASE}/current/pix_active_participants.csv">CSV</a></div>
+    <div>📄 <a href="${BASE}/current/pix_in_adhesion.json">current/pix_in_adhesion.json</a> &nbsp;·&nbsp; <a href="${BASE}/current/pix_in_adhesion.csv">CSV</a></div>
+    <div>📄 <a href="${BASE}/current/catalog_crosswalk.json">current/catalog_crosswalk.json</a> &nbsp;·&nbsp; <a href="${BASE}/current/catalog_crosswalk.csv">CSV</a></div>
+    <div>📋 <a href="${BASE}/current/manifest.json">current/manifest.json</a></div>
+    <div>📦 <a href="${BASE}/datapackage.json">datapackage.json</a></div>
   </div>
 </div>
 
@@ -428,7 +429,7 @@ function buildIndexPage(meta: ReturnType<typeof getMetadata>): string {
       Inclui <code>INSTITUTIONS</code>, <code>SPI_PARTICIPANTS</code>, <code>PIX_ACTIVE_PARTICIPANTS</code>, <code>PIX_IN_ADHESION</code>
       e helpers de lookup e busca. Dados embutidos no bundle — sem chamadas de rede.
     </p>
-    <p><a href="/api.html">Referência da API →</a> · <a href="/which-export.html">Qual export usar? →</a></p>
+    <p><a href="${BASE}/api.html">Referência da API →</a> · <a href="${BASE}/which-export.html">Qual export usar? →</a></p>
   </div>
 </div>
 
@@ -450,7 +451,7 @@ function buildIndexPage(meta: ReturnType<typeof getMetadata>): string {
   }
 
   function renderItem(e) {
-    return '<a class="result-item" href="/institutions/' + e.i + '.html">' +
+    return '<a class="result-item" href="${BASE}/institutions/' + e.i + '.html">' +
       '<span class="result-ispb">' + e.i + '</span>' +
       '<span>' +
         '<div class="result-name">' + e.n + '</div>' +
@@ -526,7 +527,7 @@ function buildInstitutionPage(entry: InstitutionEntry, snapshotDate: string): st
 
   const content = `
 <div style="margin-bottom:1rem;font-size:0.875rem;color:var(--muted)">
-  <a href="/index.html">← Catálogo</a>
+  <a href="${BASE}/index.html">← Catálogo</a>
 </div>
 
 <div class="card">
@@ -551,7 +552,7 @@ function buildInstitutionPage(entry: InstitutionEntry, snapshotDate: string): st
 <p style="font-size:0.875rem;color:var(--muted);">
   Esta entrada é parte do índice derivado <code>INSTITUTIONS</code>, gerado a partir dos datasets canônicos do catálogo.
   O campo <code>matchConfidence</code> indica o grau de certeza do agrupamento entre datasets.
-  <a href="/semantic-scope.html">Como interpretar este registro →</a>
+  <a href="${BASE}/semantic-scope.html">Como interpretar este registro →</a>
 </p>
 <p style="font-size:0.875rem;color:var(--muted);">
   Dados canônicos em: <a href="${entry.canonicalSource}" target="_blank" rel="noopener">${entry.canonicalSource}</a>
