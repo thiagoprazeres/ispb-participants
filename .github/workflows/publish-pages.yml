@@ -26,9 +26,12 @@ jobs:
       - uses: browser-actions/setup-chrome@v1
 
       - run: npm ci
-      - run: npm run generate:site
+      - run: npm run generate
+      - run: npm run build:web
 
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
