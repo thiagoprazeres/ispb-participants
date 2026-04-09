@@ -1,4 +1,4 @@
-# ISPB Participants Catalog
+<img src="https://thiagoprazeres.github.io/ispb-participants/logo.svg" alt="ISPB Participants Catalog" width="260" height="52">
 
 _Catálogo público derivado de fonte oficial do Banco Central_
 

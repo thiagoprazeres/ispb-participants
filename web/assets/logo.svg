@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 64" width="320" height="64" role="img" aria-label="ISPB Participants Catalog">
+  <rect x="0" y="8" width="48" height="48" rx="10" fill="#025c75"/>
+  <rect x="12" y="20" width="24" height="3" rx="1.5" fill="#ffffff"/>
+  <rect x="12" y="27" width="18" height="3" rx="1.5" fill="#ffffffaa"/>
+  <rect x="12" y="34" width="21" height="3" rx="1.5" fill="#ffffffaa"/>
+  <rect x="12" y="41" width="14" height="3" rx="1.5" fill="#ffffff55"/>
+  <text x="62" y="30" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="700" fill="#0f1f26" letter-spacing="-0.3">ISPB</text>
+  <text x="62" y="50" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" fill="#4d6670" letter-spacing="0.2">Participants Catalog</text>
+</svg>

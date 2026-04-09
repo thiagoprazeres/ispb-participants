@@ -19,6 +19,7 @@ const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, '..');
 const SITE_DIR = path.join(REPO_ROOT, 'site');
 const BASE = (process.env.BASE_PATH ?? '/ispb-participants').replace(/\/$/, '');
+const ASSETS_DIR = path.join(__dirname, 'assets');
 
 // ─── import canonical data from src/index.ts (no logic duplication) ──────────
 
@@ -29,6 +30,16 @@ import {
 } from '../src/index.js';
 
 import type { InstitutionEntry } from '../src/catalog/types.js';
+
+// ─── brand assets ────────────────────────────────────────────────────────────
+
+let LOGO_SVG = '';
+let LOGO_SQUARE_SVG = '';
+
+async function loadAssets() {
+  LOGO_SVG = await readFile(path.join(ASSETS_DIR, 'logo.svg'), 'utf8');
+  LOGO_SQUARE_SVG = await readFile(path.join(ASSETS_DIR, 'logo-square.svg'), 'utf8');
+}
 
 // ─── helpers ──────────────────────────────────────────────────────────────────
 
@@ -120,11 +131,11 @@ hr { border: none; border-top: 1px solid var(--line); margin: 2rem 0; }
   flex-wrap: wrap;
 }
 .site-header .brand {
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--brand);
-  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
 }
+.site-header .brand svg { display: block; }
 .site-nav {
   display: flex;
   gap: 1rem;
@@ -309,17 +320,36 @@ function layout(opts: {
     return `<a href="${href}"${isActive ? ' class="active"' : ''}>${p.label}</a>`;
   }).join('\n        ');
 
+  const faviconSvg = LOGO_SQUARE_SVG
+    .replace(/^<svg /, '<svg ')
+    .trim();
+  const faviconDataUri = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
+  const ogImage = `${BASE}/logo-square.svg`;
+  const pageTitle = opts.activeSlug === 'index'
+    ? 'ISPB Participants Catalog'
+    : `${opts.title} — ISPB Participants Catalog`;
+  const logoInline = LOGO_SVG
+    .replace(' width="320" height="64"', ' width="200" height="40"')
+    .trim();
+
   return `<!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${opts.title} — ISPB Participants Catalog</title>
+  <title>${pageTitle}</title>
+  <meta name="description" content="Catálogo público derivado de fonte oficial do Banco Central do Brasil para participantes do SPI e do Pix.">
+  <meta property="og:title" content="${pageTitle}">
+  <meta property="og:description" content="Catálogo público de participantes do SPI e do Pix. Snapshot: ${opts.snapshotDate}.">
+  <meta property="og:image" content="${ogImage}">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/svg+xml" href="${faviconDataUri}">
   <style>${CSS}</style>
 </head>
 <body>
   <header class="site-header">
-    <a href="${BASE}/index.html" class="brand">ISPB Participants Catalog</a>
+    <a href="${BASE}/index.html" class="brand" aria-label="ISPB Participants Catalog">${logoInline}</a>
     <nav class="site-nav">
       ${nav}
     </nav>
@@ -342,6 +372,7 @@ function layout(opts: {
 </body>
 </html>`;
 }
+
 
 // ─── badge & chip helpers ─────────────────────────────────────────────────────
 
@@ -599,6 +630,8 @@ async function buildDocPage(opts: {
 // ─── main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
+  await loadAssets();
+
   const meta = getMetadata();
   const catalogMeta = getCatalogMetadata();
   const snapshotDate = meta.sourceDate;
@@ -650,6 +683,8 @@ async function main() {
     [path.join(REPO_ROOT, 'datapackage.json'), path.join(SITE_DIR, 'datapackage.json')],
     [path.join(REPO_ROOT, 'LICENSE'), path.join(SITE_DIR, 'LICENSE')],
     [path.join(REPO_ROOT, 'LICENSE_DATA'), path.join(SITE_DIR, 'LICENSE_DATA')],
+    [path.join(ASSETS_DIR, 'logo.svg'), path.join(SITE_DIR, 'logo.svg')],
+    [path.join(ASSETS_DIR, 'logo-square.svg'), path.join(SITE_DIR, 'logo-square.svg')],
   ];
   for (const [src, dst] of filesToCopy) {
     await cp(src, dst);
