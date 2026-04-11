@@ -2,6 +2,15 @@
 
 Snapshots do catalogo derivado. Cada entrada descreve a promocao bem-sucedida de um snapshot para o repositorio.
 
+## 2026-04-11
+
+- Collected at: 2026-04-11T09:57:11.760Z
+- spi_participants: 893
+- pix_active_participants: 910
+- pix_in_adhesion: 21
+- catalog_crosswalk: 1824
+- Warnings: 1
+
 ## 2026-04-10
 
 - Collected at: 2026-04-10T10:17:46.131Z
