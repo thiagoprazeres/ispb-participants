@@ -7,25 +7,25 @@ import type { CatalogMetadata, Metadata } from '../catalog/types.js';
 export const METADATA: Metadata = {
   "source": "ISPB Participants Catalog current snapshot",
   "sourceUrl": "https://github.com/thiagoprazeres/ispb-participants/tree/main/current",
-  "snapshotDate": "2026-04-11",
+  "snapshotDate": "2026-04-12",
   "spiParticipantCount": 893,
   "pixActiveParticipantCount": 910,
   "pixInAdhesionCount": 21,
   "crosswalkRecordCount": 1824,
-  "sourceDate": "2026-04-11",
+  "sourceDate": "2026-04-12",
   "recordCount": 910
 } as const;
 
 export const CATALOG_METADATA: CatalogMetadata = {
   "catalogUrl": "https://github.com/thiagoprazeres/ispb-participants",
-  "snapshotDate": "2026-04-11",
+  "snapshotDate": "2026-04-12",
   "spiParticipantCount": 893,
   "pixActiveParticipantCount": 910,
   "pixInAdhesionCount": 21,
   "crosswalkRecordCount": 1824,
   "manifest": {
-    "snapshot_date": "2026-04-11",
-    "collected_at": "2026-04-11T09:57:11.760Z",
+    "snapshot_date": "2026-04-12",
+    "collected_at": "2026-04-12T10:01:35.327Z",
     "source_urls": {
       "spi_participants": [
         "https://www.bcb.gov.br/estabilidadefinanceira/sistemapagamentosinstantaneos",
@@ -68,20 +68,20 @@ export const CATALOG_METADATA: CatalogMetadata = {
     },
     "dataset_hashes": {
       "spi_participants": {
-        "csv_sha256": "6185ed9c28d1d2bc3ef85fe3d30125c1e0e7fb9e46fa3a0009b78ce9351b08fd",
-        "json_sha256": "fa01c4b9595da35df05779b3a465414c7546f515ab7f9d3688ea86b200d158ad"
+        "csv_sha256": "b0d64de8d621633297a38187ab85fa18bed751e1bdca27e36690c091cba8479f",
+        "json_sha256": "97136a4d4429e08ca4df41ba84c9bc48546aaee4b3aa034cbccedc5585e4ae38"
       },
       "pix_active_participants": {
-        "csv_sha256": "f19becf27bd3e0600eeb591c494bbc314f226d8ab1c473b5bc57e2a5cf4cf56b",
-        "json_sha256": "87e23af82f16f238321e59e28a574f0bdd1a77c8eee29fe36f9514bb220dfd26"
+        "csv_sha256": "46aa267861bd703fec2f3675e575e32815da20374c03ad98643bd5436624f186",
+        "json_sha256": "c1c0b6f76d981592893f09fbe37bb0f74dac12f66cf7556451dfe41cc8365787"
       },
       "pix_in_adhesion": {
-        "csv_sha256": "e9629ed6fe003dd512e78fbb8be8974bb97e5f0cfb37292348f22b4ec64ef1e9",
-        "json_sha256": "92d642ae7888a4a5b78609862b0770311bfd75e2b43d8300c5036feae833aad2"
+        "csv_sha256": "647b36f95b624b42a0a5b4162acbe169123f2cffab2b17711b16e9a7bf1f3acb",
+        "json_sha256": "31c2689435c06438840c5138d1fe62396071eceb82fa3bb0699ded2378a99e95"
       },
       "catalog_crosswalk": {
-        "csv_sha256": "8fe25f6bf7bf88ecdeab5e1b62dfb87e266772dcdbfa892b3a83dd18f2298271",
-        "json_sha256": "0e92b0f49c8dfda3d81b531c93a91862b8102a27f2fd189a7d2e7d9ce0f76008"
+        "csv_sha256": "13a74e8476b72c477deb7f2c2faa1f1078e8188e5583feae3f62b52600fd6489",
+        "json_sha256": "468395bc7f49afb7635a2deb3fa268b311139a400fe79ea38e177a3265b64b82"
       }
     },
     "record_counts": {
