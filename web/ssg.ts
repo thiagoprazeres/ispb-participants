@@ -405,12 +405,12 @@ function layout(opts: {
   <footer class="site-footer">
     <p>
       Snapshot: <strong>${opts.snapshotDate}</strong> ·
-      Fonte: <a href="https://www.bcb.gov.br" target="_blank" rel="noopener">Banco Central do Brasil</a> ·
-      Catálogo: <a href="https://github.com/thiagoprazeres/ispb-participants" target="_blank" rel="noopener">thiagoprazeres/ispb-participants</a>
+      Fonte: <a href="https://www.bcb.gov.br" target="_blank" rel="noopener" title="Banco Central do Brasil - abre em nova aba">Banco Central do Brasil</a> ·
+      Catálogo: <a href="https://github.com/thiagoprazeres/ispb-participants" target="_blank" rel="noopener" title="Repositório no GitHub - abre em nova aba">thiagoprazeres/ispb-participants</a>
     </p>
     <p style="margin-top:0.4rem">
-      Código: <a href="https://github.com/thiagoprazeres/ispb-participants/blob/main/LICENSE" target="_blank" rel="noopener">MIT</a> ·
-      Dados derivados: <a href="https://github.com/thiagoprazeres/ispb-participants/blob/main/LICENSE_DATA" target="_blank" rel="noopener">ODC-By 1.0</a> ·
+      Código: <a href="https://github.com/thiagoprazeres/ispb-participants/blob/main/LICENSE" target="_blank" rel="noopener" title="Licença MIT - abre em nova aba">MIT</a> ·
+      Dados derivados: <a href="https://github.com/thiagoprazeres/ispb-participants/blob/main/LICENSE_DATA" target="_blank" rel="noopener" title="Licença ODC-By 1.0 - abre em nova aba">ODC-By 1.0</a> ·
       Não é publicação oficial do Banco Central
     </p>
   </footer>
@@ -423,14 +423,14 @@ function layout(opts: {
 
 function spiStatus(entry: InstitutionEntry): string {
   return entry.inSpi
-    ? `<span class="badge badge-spi">SPI ✓</span>`
-    : `<span class="badge badge-off">SPI —</span>`;
+    ? `<span class="badge badge-spi">SPI</span>`
+    : `<span class="badge badge-off">Não participa do SPI</span>`;
 }
 
 function pixStatus(entry: InstitutionEntry): string {
-  if (entry.inPixActive) return `<span class="badge badge-pix">Pix ativo ✓</span>`;
-  if (entry.inPixAdhesion) return `<span class="badge badge-adhesion">Pix adesão</span>`;
-  return `<span class="badge badge-off">Pix —</span>`;
+  if (entry.inPixActive) return `<span class="badge badge-pix">Pix ativo</span>`;
+  if (entry.inPixAdhesion) return `<span class="badge badge-adhesion">Pix em adesão</span>`;
+  return `<span class="badge badge-off">Não participa do Pix</span>`;
 }
 
 function confidenceChip(conf: InstitutionEntry['matchConfidence']): string {
@@ -603,8 +603,8 @@ function buildInstitutionPage(entry: InstitutionEntry, snapshotDate: string): st
     ['Tipo Pix', entry.pixParticipationType ?? '<span style="color:var(--muted)">—</span>'],
     ['Modalidade Pix', entry.pixParticipationMode ?? '<span style="color:var(--muted)">—</span>'],
     ['Datasets de origem', entry.sourceDatasets.map(d => `<code>${d}</code>`).join(', ') || '<span style="color:var(--muted)">—</span>'],
-    ['Match confidence', confidenceChip(entry.matchConfidence) + `&nbsp;<span style="font-size:0.75rem;color:var(--muted)">${matchConfidenceLabel(entry.matchConfidence)}</span>`],
-    ['Fonte canônica', `<a href="${entry.canonicalSource}" target="_blank" rel="noopener">${entry.canonicalSource}</a>`],
+    ['Confiança do match', confidenceChip(entry.matchConfidence) + `&nbsp;<span style="font-size:0.75rem;color:var(--muted)">${matchConfidenceLabel(entry.matchConfidence)}</span>`],
+    ['Fonte canônica', `<a href="${entry.canonicalSource}" target="_blank" rel="noopener" title="Fonte oficial no site do Banco Central - abre em nova aba">${entry.canonicalSource}</a>`],
   ];
 
   const adhesionWarn = (!entry.inPixActive && entry.inPixAdhesion)
@@ -644,7 +644,7 @@ function buildInstitutionPage(entry: InstitutionEntry, snapshotDate: string): st
   <a href="${BASE}/semantic-scope.html">Como interpretar este registro →</a>
 </p>
 <p style="font-size:0.875rem;color:var(--muted);">
-  Dados canônicos em: <a href="${entry.canonicalSource}" target="_blank" rel="noopener">${entry.canonicalSource}</a>
+  Dados canônicos em: <a href="${entry.canonicalSource}" target="_blank" rel="noopener" title="Fonte oficial no site do Banco Central - abre em nova aba">${entry.canonicalSource}</a>
 </p>`;
 
   const participationParts: string[] = [];
@@ -668,7 +668,7 @@ function buildInstitutionPage(entry: InstitutionEntry, snapshotDate: string): st
 
   return layout({
     title: entry.name,
-    activeSlug: 'index',
+    activeSlug: `institution-${entry.ispb}`,
     content,
     snapshotDate,
     description,
