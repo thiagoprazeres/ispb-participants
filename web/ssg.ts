@@ -500,6 +500,14 @@ function buildIndexPage(meta: ReturnType<typeof getMetadata>): string {
 <h2>Pacote npm</h2>
 <div class="card">
   <div style="font-size:0.9rem;">
+    <p>
+      <a href="https://www.npmjs.com/package/@thiagoprazeres/ispb-participants" target="_blank" rel="noopener" title="Ver no npmjs.com - abre em nova aba">
+        <img src="https://img.shields.io/npm/v/@thiagoprazeres/ispb-participants" alt="npm version">
+      </a>
+      <a href="https://github.com/thiagoprazeres/ispb-participants" target="_blank" rel="noopener" title="Ver código fonte no GitHub - abre em nova aba" style="margin-left:0.5rem;">
+        <img src="https://img.shields.io/badge/GitHub-repo-025c75" alt="GitHub repository">
+      </a>
+    </p>
     <code style="font-size:1rem;">npm install @thiagoprazeres/ispb-participants</code>
     <p style="margin-top:0.75rem;color:var(--muted);">
       Inclui <code>INSTITUTIONS</code>, <code>SPI_PARTICIPANTS</code>, <code>PIX_ACTIVE_PARTICIPANTS</code>, <code>PIX_IN_ADHESION</code>
