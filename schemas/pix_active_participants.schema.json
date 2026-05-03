@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/thiagoprazeres/ispb-participants/schemas/pix_active_participants.schema.json",
+  "$id": "https://github.com/cafeinadesign/ispb-participants/schemas/pix_active_participants.schema.json",
   "title": "pix_active_participants",
   "description": "Schema for the active Pix participants dataset derived from the official Banco Central Pix participant publication.",
   "type": "object",

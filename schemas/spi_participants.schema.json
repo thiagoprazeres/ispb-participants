@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/thiagoprazeres/ispb-participants/schemas/spi_participants.schema.json",
+  "$id": "https://github.com/cafeinadesign/ispb-participants/schemas/spi_participants.schema.json",
   "title": "spi_participants",
   "description": "Schema for the SPI participants dataset derived from the official Banco Central SPI participant publication.",
   "type": "object",

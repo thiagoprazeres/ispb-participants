@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/thiagoprazeres/ispb-participants/schemas/catalog_crosswalk.schema.json",
+  "$id": "https://github.com/cafeinadesign/ispb-participants/schemas/catalog_crosswalk.schema.json",
   "title": "catalog_crosswalk",
   "description": "Schema for the conservative crosswalk that links source rows without silently inventing equivalences.",
   "type": "object",

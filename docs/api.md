@@ -1,6 +1,6 @@
 # API pública
 
-Referência completa dos exports do pacote `@thiagoprazeres/ispb-participants`.
+Referência completa dos exports do pacote `@cafeinadesign/ispb-participants`.
 
 ---
 

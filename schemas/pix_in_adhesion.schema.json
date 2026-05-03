@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/thiagoprazeres/ispb-participants/schemas/pix_in_adhesion.schema.json",
+  "$id": "https://github.com/cafeinadesign/ispb-participants/schemas/pix_in_adhesion.schema.json",
   "title": "pix_in_adhesion",
   "description": "Schema for the Pix institutions in adhesion dataset derived from the official Banco Central Pix participant publication.",
   "type": "object",

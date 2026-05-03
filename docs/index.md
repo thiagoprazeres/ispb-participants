@@ -1,6 +1,6 @@
 # Catálogo Interno
 
-Camada auditável do ISPB Participants Catalog dentro do próprio `@thiagoprazeres/ispb-participants`.
+Camada auditável do ISPB Participants Catalog dentro do próprio `@cafeinadesign/ispb-participants`.
 
 Este diretório documenta o catálogo derivado mantido dentro do próprio projeto. A distribuição pública principal de consumo continua sendo o pacote npm, enquanto `current/`, `snapshots/`, `schemas/`, `sources/` e `datapackage.json` preservam a trilha de auditoria e a proveniência dos artefatos.
 

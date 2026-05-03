@@ -1,5 +1,5 @@
 {
-  "name": "@thiagoprazeres/ispb-participants",
+  "name": "@cafeinadesign/ispb-participants",
   "version": "1.2.0",
   "description": "JavaScript and TypeScript package for SPI and Pix participants, built from an internal auditable catalog derived from official Banco Central do Brasil sources",
   "keywords": [
@@ -18,11 +18,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thiagoprazeres/ispb-participants.git"
+    "url": "git+https://github.com/cafeinadesign/ispb-participants.git"
   },
-  "homepage": "https://thiagoprazeres.github.io/ispb-participants",
+  "homepage": "https://cafeinadesign.github.io/ispb-participants",
   "bugs": {
-    "url": "https://github.com/thiagoprazeres/ispb-participants/issues"
+    "url": "https://github.com/cafeinadesign/ispb-participants/issues"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

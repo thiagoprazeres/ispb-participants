@@ -88,7 +88,7 @@ describe('getMetadata', () => {
   it('returns correct shape', () => {
     const meta = getMetadata();
     expect(meta.source).toBeTruthy();
-    expect(meta.sourceUrl).toContain('thiagoprazeres/ispb-participants');
+    expect(meta.sourceUrl).toContain('cafeinadesign/ispb-participants');
     expect(meta.sourceUrl).toContain('/current');
     expect(meta.snapshotDate).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     expect(meta.spiParticipantCount).toBeGreaterThan(0);
@@ -103,7 +103,7 @@ describe('getMetadata', () => {
 describe('getCatalogMetadata', () => {
   it('returns promoted catalog metadata', () => {
     const metadata = getCatalogMetadata();
-    expect(metadata.catalogUrl).toContain('thiagoprazeres/ispb-participants');
+    expect(metadata.catalogUrl).toContain('cafeinadesign/ispb-participants');
     expect(metadata.snapshotDate).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     expect(metadata.spiParticipantCount).toBe(metadata.manifest.record_counts.spi_participants);
     expect(metadata.pixActiveParticipantCount).toBe(

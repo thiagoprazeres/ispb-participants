@@ -1,6 +1,6 @@
 # Catálogo
 
-O produto principal deste repositório é o ISPB Participants Catalog. O pacote `@thiagoprazeres/ispb-participants` é o cliente oficial desse catálogo.
+O produto principal deste repositório é o ISPB Participants Catalog. O pacote `@cafeinadesign/ispb-participants` é o cliente oficial desse catálogo.
 
 ## Distribuição principal
 

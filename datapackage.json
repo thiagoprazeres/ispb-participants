@@ -1,7 +1,7 @@
 {
   "profile": "data-package",
   "name": "ispb-participants-catalog",
-  "id": "https://github.com/thiagoprazeres/ispb-participants",
+  "id": "https://github.com/cafeinadesign/ispb-participants",
   "title": "ISPB Participants Catalog",
   "description": "ISPB Participants Catalog - Catálogo público derivado de fonte oficial do Banco Central. Static versioned artifacts are distributed from current/ and snapshots/.",
   "licenses": [
