@@ -3,7 +3,7 @@ import type { DatasetName } from './types.js';
 export const PRODUCT_NAME = 'ISPB Participants Catalog';
 export const PRODUCT_SUBTITLE =
   'Catálogo público derivado de fonte oficial do Banco Central';
-export const PACKAGE_NPM_NAME = '@cafeinadesign/ispb-participants';
+export const PACKAGE_NPM_NAME = '@cafeina_dev/ispb-participants';
 export const CATALOG_DESCRIPTOR_NAME = 'ispb-participants-catalog';
 export const REPOSITORY_URL = 'https://github.com/cafeinadesign/ispb-participants';
 export const PIPELINE_VERSION = '2026.04.09';

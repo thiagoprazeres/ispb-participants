@@ -3,7 +3,7 @@
 _Catálogo público derivado de fonte oficial do Banco Central_
 
 [![website](https://img.shields.io/badge/site-ispb--participants-025c75)](https://cafeinadesign.github.io/ispb-participants)
-[![npm](https://img.shields.io/npm/v/@cafeinadesign/ispb-participants)](https://www.npmjs.com/package/@cafeinadesign/ispb-participants)
+[![npm](https://img.shields.io/npm/v/@cafeina_dev/ispb-participants)](https://www.npmjs.com/package/@cafeina_dev/ispb-participants)
 [![license code](https://img.shields.io/badge/code-MIT-blue)](./LICENSE)
 [![license data](https://img.shields.io/badge/data-ODC--By%201.0-0b7285)](./LICENSE_DATA)
 
@@ -25,7 +25,7 @@ Não existe um único número genérico de manchete que represente “o tamanho 
 ## Getting started
 
 ```bash
-npm install @cafeinadesign/ispb-participants
+npm install @cafeina_dev/ispb-participants
 ```
 
 ```ts
@@ -34,7 +34,7 @@ import {
   getInstitutionStatusByIspb,
   searchInstitutionsByName,
   hasIspb,
-} from '@cafeinadesign/ispb-participants';
+} from '@cafeina_dev/ispb-participants';
 
 // Lookup por ISPB
 const inst = getInstitutionByIspb('60746948');

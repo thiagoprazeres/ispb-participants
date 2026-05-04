@@ -1,6 +1,6 @@
 # API pública
 
-Referência completa dos exports do pacote `@cafeinadesign/ispb-participants`.
+Referência completa dos exports do pacote `@cafeina_dev/ispb-participants`.
 
 ---
 

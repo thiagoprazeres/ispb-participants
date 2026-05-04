@@ -9,7 +9,7 @@ Guia rápido para escolher o export certo para cada caso de uso.
 Esse é o caminho recomendado para ISPB extraído de EndToEndId.
 
 ```ts
-import { hasIspb } from '@cafeinadesign/ispb-participants';
+import { hasIspb } from '@cafeina_dev/ispb-participants';
 hasIspb('60746948'); // true
 ```
 
@@ -20,7 +20,7 @@ hasIspb('60746948'); // true
 Esse é o lookup principal do pacote para consumo por ISPB.
 
 ```ts
-import { getInstitutionByIspb } from '@cafeinadesign/ispb-participants';
+import { getInstitutionByIspb } from '@cafeina_dev/ispb-participants';
 const inst = getInstitutionByIspb('60746948');
 // inst.name, inst.shortName, inst.inSpi, inst.inPixActive, inst.inPixAdhesion
 ```
@@ -30,7 +30,7 @@ const inst = getInstitutionByIspb('60746948');
 ## Quero apenas o status de participação (SPI / Pix ativo / Pix adesão)
 
 ```ts
-import { getInstitutionStatusByIspb } from '@cafeinadesign/ispb-participants';
+import { getInstitutionStatusByIspb } from '@cafeina_dev/ispb-participants';
 const status = getInstitutionStatusByIspb('60746948');
 // { inSpi: true, inPixActive: true, inPixAdhesion: false, matchConfidence: 'exact_ispb', ... }
 ```
@@ -40,7 +40,7 @@ const status = getInstitutionStatusByIspb('60746948');
 ## Quero buscar instituições por nome
 
 ```ts
-import { searchInstitutionsByName } from '@cafeinadesign/ispb-participants';
+import { searchInstitutionsByName } from '@cafeina_dev/ispb-participants';
 const results = searchInstitutionsByName('bradesco');
 ```
 
@@ -49,7 +49,7 @@ const results = searchInstitutionsByName('bradesco');
 ## Quero os dados canônicos completos do SPI para um ISPB específico
 
 ```ts
-import { getSpiParticipantByIspb } from '@cafeinadesign/ispb-participants';
+import { getSpiParticipantByIspb } from '@cafeina_dev/ispb-participants';
 const record = getSpiParticipantByIspb('60746948');
 // record.spi_participation_type, record.spi_started_at, record.raw_source_json, ...
 ```
@@ -59,7 +59,7 @@ const record = getSpiParticipantByIspb('60746948');
 ## Quero os dados canônicos completos de participantes ativos do Pix para um ISPB
 
 ```ts
-import { getPixActiveParticipantByIspb } from '@cafeinadesign/ispb-participants';
+import { getPixActiveParticipantByIspb } from '@cafeina_dev/ispb-participants';
 const record = getPixActiveParticipantByIspb('60746948');
 // record.initiation_of_payment, record.facilitator_of_withdrawal_and_change, ...
 ```
@@ -75,7 +75,7 @@ import {
   SPI_PARTICIPANTS,
   PIX_ACTIVE_PARTICIPANTS,
   PIX_IN_ADHESION,
-} from '@cafeinadesign/ispb-participants';
+} from '@cafeina_dev/ispb-participants';
 
 for (const record of SPI_PARTICIPANTS) {
   // record.ispb, record.institution_name, record.spi_participation_type, ...
@@ -87,7 +87,7 @@ for (const record of SPI_PARTICIPANTS) {
 ## Quero o índice completo de instituições
 
 ```ts
-import { INSTITUTIONS } from '@cafeinadesign/ispb-participants';
+import { INSTITUTIONS } from '@cafeina_dev/ispb-participants';
 // Record<string, InstitutionEntry> — chave é o ISPB com 8 dígitos
 ```
 

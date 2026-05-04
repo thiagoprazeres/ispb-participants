@@ -1,5 +1,5 @@
 {
-  "name": "@cafeinadesign/ispb-participants",
+  "name": "@cafeina_dev/ispb-participants",
   "version": "1.2.0",
   "description": "JavaScript and TypeScript package for SPI and Pix participants, built from an internal auditable catalog derived from official Banco Central do Brasil sources",
   "keywords": [
@@ -55,8 +55,8 @@
     "node": ">=18"
   },
   "devDependencies": {
-    "ajv": "^8.17.1",
     "@types/node": "^22.0.0",
+    "ajv": "^8.17.1",
     "csv-parse": "^6.2.1",
     "marked": "^15.0.7",
     "tsup": "^8.0.0",

@@ -3,7 +3,7 @@
 ## Instalação
 
 ```bash
-npm install @cafeinadesign/ispb-participants
+npm install @cafeina_dev/ispb-participants
 ```
 
 Requer Node.js ≥ 18. Funciona com TypeScript e JavaScript (ESM e CommonJS).
@@ -15,7 +15,7 @@ import {
   getInstitutionByIspb,
   searchInstitutionsByName,
   getInstitutionStatusByIspb,
-} from '@cafeinadesign/ispb-participants';
+} from '@cafeina_dev/ispb-participants';
 
 // Lookup por ISPB
 const bradesco = getInstitutionByIspb('60746948');
